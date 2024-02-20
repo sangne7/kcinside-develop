@@ -8,7 +8,7 @@ public class KcinsideApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(KcinsideApplication.class, args);
-		# pull_test
+		// test ok
 		System.out.println("run server...");
 	}
 
