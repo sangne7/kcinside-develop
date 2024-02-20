@@ -4,7 +4,7 @@ kcinside project develop
 # API
 server:port/swagger-ui/index.html/ 
 
-나를 위한 실행법 정리
+# 실행법
 1. ssh ec2 접속
 2. git clone
 3. properites file 생성 (db connection)
