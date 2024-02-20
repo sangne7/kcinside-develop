@@ -14,8 +14,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 public class SpringSecurityConfiguration {
 
-//	@Autowired
-//	UserDetailsService userService;
+	@Autowired
+	UserDetailsService userService;
 	
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -27,17 +27,27 @@ public class SpringSecurityConfiguration {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 				.authorizeRequests()
-				.anyRequest().permitAll();
+				.anyRequest().permitAll()
+    			.and()
+    			.formLogin()
+//    			.loginPage("/login")
+    			.loginProcessingUrl("/loginProc")
+    			.defaultSuccessUrl("/")
+    			.and()
+    			.logout()
+    			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+    			.logoutSuccessUrl("/")
+    			.invalidateHttpSession(true);
 		return http.build();
 	}
     
-//    @Bean
-//    public DaoAuthenticationProvider daoAuthenticationProvider() throws Exception {
-//    	DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-//    	
-//    	daoAuthenticationProvider.setUserDetailsService(userService);
-//    	daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-//    	
-//    	return daoAuthenticationProvider;
-//    }
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider() throws Exception {
+    	DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+    	
+    	daoAuthenticationProvider.setUserDetailsService(userService);
+    	daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+    	
+    	return daoAuthenticationProvider;
+    }
 }
