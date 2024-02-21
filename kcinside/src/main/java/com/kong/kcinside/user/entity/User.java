@@ -9,9 +9,19 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Table(name="user")
 @Entity
+@Getter
+@Setter
+@Builder
+@ToString
+@AllArgsConstructor
 public class User implements UserDetails {
 
 	@Id
@@ -33,6 +43,8 @@ public class User implements UserDetails {
 	@Column
 	private int status;
 
+	public User() {}
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
@@ -42,13 +54,13 @@ public class User implements UserDetails {
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.password;
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.username;
 	}
 
 }

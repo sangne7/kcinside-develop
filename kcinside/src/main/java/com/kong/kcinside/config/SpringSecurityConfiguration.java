@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.kong.kcinside.user.handler.UserHandler;
+
 @Configuration
 public class SpringSecurityConfiguration {
 
@@ -30,13 +32,12 @@ public class SpringSecurityConfiguration {
 				.anyRequest().permitAll()
     			.and()
     			.formLogin()
-//    			.loginPage("/login")
-    			.loginProcessingUrl("/loginProc")
-    			.defaultSuccessUrl("/")
+    			.loginProcessingUrl("/login")
+//    			.defaultSuccessUrl("/")
     			.and()
     			.logout()
     			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-    			.logoutSuccessUrl("/")
+//    			.logoutSuccessUrl("/")
     			.invalidateHttpSession(true);
 		return http.build();
 	}
