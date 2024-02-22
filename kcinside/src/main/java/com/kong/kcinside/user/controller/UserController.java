@@ -37,13 +37,9 @@ public class UserController {
 	@Parameter()
 	@GetMapping("")
 	public ResponseEntity<?> findAllUser() {
-		
-		System.out.println("call api /user");
-		
+				
 		List<UserDTO> userList = userService.findAllUser();
-		
-		System.out.println(userList);
-		
+				
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/json; charset=utf-8");
 		
@@ -54,11 +50,8 @@ public class UserController {
 	@Parameter(name = "회원 번호")
 	@GetMapping("/{id}")
 	public ResponseEntity<?> findUserById(@PathVariable(name="id") int id) {
-		
-		System.out.println("call api /user/{id}");
-		
+				
 		UserDTO user = userService.findUserById(id);
-		System.out.println(user);
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/json; charset=utf-8");
@@ -71,7 +64,6 @@ public class UserController {
     @PostMapping("")
     public ResponseEntity<?> signUp(@RequestBody UserDTO user) {
     	
-    	System.out.println(user);
     	userService.signUp(user);
     	
 		HttpHeaders headers = new HttpHeaders();
