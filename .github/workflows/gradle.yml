@@ -24,4 +24,4 @@ jobs:
 
     # Build
     - name: Build with Gradle
-      run: ./gradlew clean build
+      run: ./kcinside/gradlew clean build
